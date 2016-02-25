@@ -1,0 +1,4 @@
+mixin koValidationError(item)
+  ul(data-bind='visible: !' + item + '.isValid(), foreach: ' + item + '.errors')
+    li
+      .error(data-bind='text: $data')

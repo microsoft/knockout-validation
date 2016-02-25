@@ -1,0 +1,19 @@
+{
+  "name": "ko-validation",
+  "version": "0.1.0",
+  "description": "Knockout validation and error handling module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BingAds/ko-validation.git"
+  },
+  "author": "a7medkamel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BingAds/ko-validation/issues"
+  },
+  "homepage": "https://github.com/BingAds/ko-validation#readme"
+}
