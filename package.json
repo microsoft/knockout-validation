@@ -39,5 +39,9 @@
     "underscore": "^1.8.3",
     "webpack": "^1.12.14",
     "webpack-stream": "^3.1.0"
+  },
+  "peerDependencies": {
+    "knockout": "^3.4.0",
+    "underscore": "^1.8.3"
   }
 }
