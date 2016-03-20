@@ -11,7 +11,9 @@ define([
   'use strict';
 
   function run(value, validators) {
-    var failed = _.find(validators, function(v) { return !v.isValid(value); });
+    var failed = _.find(validators, function (v) {
+      return !v.isValid(value);
+    });
     return failed ? failed.message : undefined;
   }
 
@@ -23,11 +25,11 @@ define([
     return new String.Type();
   }
 
-  string.size = function(length) {
+  string.size = function (length) {
     return new String.Size(length);
   };
 
-  string.xss = function() {
+  string.xss = function () {
     return new String.XSS();
   };
 
@@ -35,11 +37,11 @@ define([
     return new Number.Type();
   }
 
-  number.size = function(integerLength, decimalLength) {
+  number.size = function (integerLength, decimalLength) {
     return new Number.Size(integerLength, decimalLength);
   };
 
-  number.range = function(min, max) {
+  number.range = function (min, max) {
     return new Number.Range(min, max);
   };
 

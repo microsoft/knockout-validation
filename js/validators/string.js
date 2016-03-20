@@ -8,7 +8,7 @@ define([
     _.extend(this, new Base());
   }
 
-  Type.prototype.isValid = function(value) {
+  Type.prototype.isValid = function (value) {
     return _.isString(value);
   };
 
@@ -16,16 +16,16 @@ define([
     _.extend(this, new Base());
     this.blockInput = true;
     this.length = length || 0;
-    this.message = config.defaultMessage.Validation_NotEmpty_Required_Field({ maxlength: this.length });
+    this.message = config.defaultMessage('Validation_NotEmpty_Required_Field', { maxlength: this.length });
   }
 
-  Size.prototype.isValid = function(value) {
+  Size.prototype.isValid = function (value) {
     return _.isString(value) && _.size(value) <= this.length;
   };
 
   function XSS() {
     _.extend(this, new Base());
-    this.message = config.defaultMessage.Validation_String_Invalid_Characters();
+    this.message = config.defaultMessage('Validation_String_Invalid_Characters');
   }
 
   XSS.prototype.isValid = function (value) {
@@ -35,6 +35,6 @@ define([
   return {
     Type: Type,
     Size: Size,
-    XSS: XSS
+    XSS: XSS,
   };
 });

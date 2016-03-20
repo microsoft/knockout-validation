@@ -1,8 +1,8 @@
 define([
   'lib/underscore',
   'component/ko-validation/validators/base',
-  'component/ko-validation/config'
-], function(_, Base, config) {
+  'component/ko-validation/config',
+], function (_, Base, config) {
   'use strict';
 
   var decimalPoint = config.decimalPoint;
@@ -10,28 +10,28 @@ define([
   function Type() {
     _.extend(this, new Base());
     this.blockInput = true;
-    this.message = config.defaultMessage.Validation_Number_Require_Numeric();
+    this.message = config.defaultMessage('Validation_Number_Require_Numeric');
   }
 
-  Type.prototype.isValid = function(value) {
+  Type.prototype.isValid = function (value) {
     return value === '-' || value === decimalPoint || _.isFinite(value);
   };
 
   function Size(integerLength, decimalLength) {
     _.extend(this, new Base());
     this.blockInput = true;
-    this.message = config.defaultMessage.Validation_Number_Max_Length();
+    this.message = config.defaultMessage('Validation_Number_Max_Length');
     this.integerLength = integerLength;
     this.decimalLength = decimalLength;
   }
 
-  Size.prototype.isValid = function(value) {
+  Size.prototype.isValid = function (value) {
     if (!_.isFinite(value)) {
       return false;
     }
 
-    var number = parseFloat(value),
-      text = value.toString();
+    var number = parseFloat(value);
+    var text = value.toString();
 
     if (number < 0) {
       text = text.substr(1);
@@ -60,28 +60,24 @@ define([
     this.max = max;
 
     if (_.isFinite(min) && _.isFinite(max)) {
-      this.message = config.defaultMessage.Validation_Number_Range_Between({
+      this.message = config.defaultMessage('Validation_Number_Range_Between', {
         min: min,
         max: max,
       });
     } else if (_.isFinite(min)) {
-      this.message = config.defaultMessage.Validation_Number_Range_Min({
-        min: min
-      });
+      this.message = config.defaultMessage('Validation_Number_Range_Min', { min: min });
     } else {
-      this.message = config.defaultMessage.Validation_Number_Range_Max({
-        max: max
-      });
+      this.message = config.defaultMessage('Validation_Number_Range_Max', { max: max });
     }
   }
 
-  Range.prototype.isValid = function(value) {
+  Range.prototype.isValid = function (value) {
     if (!_.isFinite(value)) {
       return false;
     }
 
-    var number = parseFloat(value),
-      result = true;
+    var number = parseFloat(value);
+    var result = true;
 
     if (_.isFinite(this.min)) {
       result = result && number >= this.min;
@@ -97,6 +93,6 @@ define([
   return {
     Type: Type,
     Size: Size,
-    Range: Range
+    Range: Range,
   };
 });
