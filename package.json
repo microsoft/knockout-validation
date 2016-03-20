@@ -1,19 +1,43 @@
 {
-  "name": "ko-validation",
-  "version": "0.1.0",
-  "description": "Knockout validation and error handling module",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/BingAds/ko-validation.git"
+  "name": "bingads-ko-validation",
+  "description": "",
+  "main": "js/index.js",
+  "keywords": [],
+  "eslintConfig": {
+    "extends": "xo-space",
+    "env": {
+      "mocha": true,
+      "amd": true
+    },
+    "rules": {
+      "comma-dangle": [
+        2,
+        "always-multiline"
+      ],
+      "object-curly-spacing": [
+        2,
+        "always"
+      ]
+    }
   },
   "author": "a7medkamel",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/BingAds/ko-validation/issues"
+  "version": "0.1.0",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "gulp prepublish"
   },
-  "homepage": "https://github.com/BingAds/ko-validation#readme"
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^2.4.0",
+    "eslint-config-xo": "^0.12.0",
+    "eslint-config-xo-space": "^0.11.0",
+    "gulp": "^3.9.1",
+    "requirejs": "^2.2.0",
+    "underscore": "^1.8.3",
+    "webpack": "^1.12.14",
+    "webpack-stream": "^3.1.0"
+  }
 }
