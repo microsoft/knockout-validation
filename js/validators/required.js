@@ -1,12 +1,13 @@
-define(['lib/underscore',
+define([
+  'lib/underscore',
   'component/ko-validation/validators/base',
-  '$/i18n!component/ko-validation'
-], function(_, Base, i18n) {
+  'component/ko-validation/config',
+], function(_, Base, config) {
   'use strict';
   function Required(allowSpace) {
     _.extend(this, new Base());
     this.allowSpace = !!allowSpace;
-    this.message = i18n.get('Validation_NotEmpty_Required_Field');
+    this.message = config.defaultMessage.Validation_NotEmpty_Required_Field();
   }
 
   Required.prototype.isValid = function(value) {

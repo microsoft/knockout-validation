@@ -1,7 +1,9 @@
-define(['lib/underscore',
-        'component/ko-validation/validators/base'], 
-function (_, Base) {
+define([
+  'lib/underscore',
+  'component/ko-validation/validators/base'
+], function (_, Base) {
     'use strict';
+
     var Custom = function (method, message, blockInput) {
         _.extend(this, new Base());
 
@@ -15,6 +17,6 @@ function (_, Base) {
 
         this.isValid = method;
     };
-    
+
     return Custom;
 });

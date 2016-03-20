@@ -1,9 +1,9 @@
-define(['$/i18n!component/ko-validation'], function(i18n) {
+define(['component/ko-validation/config'], function(config) {
   'use strict';
 
   function Base() {
     this.blockInput = false;
-    this.message = i18n.get('Validation_Base_Field_Not_Valid');
+    this.message = config.defaultMessage.Validation_Base_Field_Not_Valid();
   }
 
   Base.prototype.set = function(options) {

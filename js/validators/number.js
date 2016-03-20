@@ -1,17 +1,16 @@
 define([
   'lib/underscore',
   'component/ko-validation/validators/base',
-  '$/i18n!component/ko-validation',
-  'component/config/index'
-], function(_, Base, i18n, config) {
+  'component/ko-validation/config'
+], function(_, Base, config) {
   'use strict';
 
-  var decimalPoint = config.get('globalization.number.decimalpoint');
+  var decimalPoint = config.decimalPoint;
 
   function Type() {
     _.extend(this, new Base());
     this.blockInput = true;
-    this.message = i18n.get('Validation_Number_Require_Numeric');
+    this.message = config.defaultMessage.Validation_Number_Require_Numeric();
   }
 
   Type.prototype.isValid = function(value) {
@@ -21,7 +20,7 @@ define([
   function Size(integerLength, decimalLength) {
     _.extend(this, new Base());
     this.blockInput = true;
-    this.message = i18n.get('Validation_Number_Max_Length');
+    this.message = config.defaultMessage.Validation_Number_Max_Length();
     this.integerLength = integerLength;
     this.decimalLength = decimalLength;
   }
@@ -61,16 +60,16 @@ define([
     this.max = max;
 
     if (_.isFinite(min) && _.isFinite(max)) {
-      this.message = i18n.get('Validation_Number_Range_Between', {
+      this.message = config.defaultMessage.Validation_Number_Range_Between({
         min: min,
-        max: max
+        max: max,
       });
     } else if (_.isFinite(min)) {
-      this.message = i18n.get('Validation_Number_Range_Min', {
+      this.message = config.defaultMessage.Validation_Number_Range_Min({
         min: min
       });
     } else {
-      this.message = i18n.get('Validation_Number_Range_Max', {
+      this.message = config.defaultMessage.Validation_Number_Range_Max({
         max: max
       });
     }

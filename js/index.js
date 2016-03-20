@@ -5,8 +5,9 @@ define([
   'component/ko-validation/validators/number',
   'component/ko-validation/validators/enum',
   'component/ko-validation/validators/custom',
-  'component/ko-validation/koExtension'
-], function (_, Required, String, Number, Enum, Custom) {
+  'component/ko-validation/koExtension',
+  'component/ko-validation/config',
+], function (_, Required, String, Number, Enum, Custom, config) {
   'use strict';
 
   function run(value, validators) {
@@ -58,6 +59,7 @@ define([
     enum: enumeration,
     custom: custom,
     // end of validators
-    run: run // run validation manually, for using without knockout
+    run: run, // run validation manually, for using without knockout
+    config: config,
   };
 });

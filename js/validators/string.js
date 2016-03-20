@@ -1,8 +1,8 @@
 define([
   'lib/underscore',
   'component/ko-validation/validators/base',
-  '$/i18n!component/ko-validation'
-], function (_, Base, i18n) {
+  'component/ko-validation/config',
+], function (_, Base, config) {
   'use strict';
   function Type() {
     _.extend(this, new Base());
@@ -16,7 +16,7 @@ define([
     _.extend(this, new Base());
     this.blockInput = true;
     this.length = length || 0;
-    this.message = i18n.get('Validation_NotEmpty_Required_Field', {maxlength: this.length});
+    this.message = config.defaultMessage.Validation_NotEmpty_Required_Field({ maxlength: this.length });
   }
 
   Size.prototype.isValid = function(value) {
@@ -25,7 +25,7 @@ define([
 
   function XSS() {
     _.extend(this, new Base());
-    this.message = i18n.get('Validation_String_Invalid_Characters');
+    this.message = config.defaultMessage.Validation_String_Invalid_Characters();
   }
 
   XSS.prototype.isValid = function (value) {
