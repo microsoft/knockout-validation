@@ -33,7 +33,13 @@ gulp.task('test', function (cb) {
   // }, handler).start();
   //
 
-  spawn(path.resolve('./node_modules/.bin/karma'), [
+  var karmaCmd = path.resolve('./node_modules/.bin/karma');
+
+  if (process.platform === 'win32') {
+    karmaCmd += '.cmd';
+  }
+
+  spawn(karmaCmd, [
     'start',
     '--single-run',
   ], { stdio: 'inherit' }).on('close', handler);
