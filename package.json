@@ -1,7 +1,7 @@
 {
   "name": "bingads-ko-validation",
-  "description": "",
-  "main": "js/index.js",
+  "description": "Knockout validation and error handling module",
+  "main": "dist/bingads-ko-validation.js",
   "keywords": [],
   "eslintConfig": {
     "extends": "xo-space",
@@ -20,7 +20,9 @@
       ]
     }
   },
-  "author": "a7medkamel",
+  "author": {
+    "name": "a7medkamel"
+  },
   "version": "0.1.0",
   "files": [
     "dist"
@@ -35,6 +37,8 @@
     "eslint-config-xo": "^0.12.0",
     "eslint-config-xo-space": "^0.11.0",
     "gulp": "^3.9.1",
+    "gulp-eslint": "^2.0.0",
+    "gulp-exclude-gitignore": "^1.0.0",
     "requirejs": "^2.2.0",
     "underscore": "^1.8.3",
     "webpack": "^1.12.14",
