@@ -5,6 +5,21 @@ var excludeGitignore = require('gulp-exclude-gitignore');
 var webpack = require('webpack-stream');
 var pkg = require('./package');
 
+var Server = require('karma').Server;
+
+gulp.task('test', function (cb) {
+  new Server({
+    configFile: path.join(__dirname, 'karma.conf.js'),
+    singleRun: true,
+  }, function (code) {
+    if (code) {
+      cb(new Error('test failure'));
+    } else {
+      cb();
+    }
+  }).start();
+});
+
 gulp.task('static', function () {
   return gulp.src('**/*.js')
     .pipe(excludeGitignore())
