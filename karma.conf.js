@@ -5,13 +5,13 @@ function getWebpackConfig() {
   var webpackConfig = _.omit(require('./webpack.config'), 'entry', 'externals');
   _.defaults(webpackConfig, { module: {} });
 
-  webpackConfig.module = [
+  webpackConfig.module.preLoaders = [
     {
       test: /\.js$/,
       include: path.resolve('./js/'),
       loader: 'istanbul-instrumenter',
     },
-  ].concat(webpackConfig.module || []);
+  ].concat(webpackConfig.module.preLoaders || []);
 
   return webpackConfig;
 }
