@@ -1,2 +1,2 @@
-# ko-validation
+# bingads-ko-validation
 Knockout validation and error handling module
