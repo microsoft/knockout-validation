@@ -1,0 +1,12 @@
+# npm packages
+node_modules
+
+# code coverage
+coverage
+
+# output folder
+dist
+
+# generated code for example pages
+example/requirejs/require.config.js
+example/webpack/dist
