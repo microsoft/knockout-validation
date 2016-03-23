@@ -5,7 +5,7 @@ module.exports = {
   entry: path.join(__dirname, './index.js'),
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bingads-ko-validation-example.js',
+    filename: 'knockout-validation-example.js',
     devtoolModuleFilenameTemplate: function (info) {
       var comps = url.parse(info.absoluteResourcePath);
 
@@ -13,7 +13,7 @@ module.exports = {
         return info.absoluteResourcePath;
       }
 
-      return 'webpack-src:///bingads-ko-validation-example/' + path.relative('.', info.absoluteResourcePath);
+      return 'webpack-src:///knockout-validation-example/' + path.relative('.', info.absoluteResourcePath);
     },
   },
   devtool: 'source-map',

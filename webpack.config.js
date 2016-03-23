@@ -25,8 +25,8 @@ module.exports = {
   entry: path.resolve('./js/index.js'),
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bingads-ko-validation.js',
-    library: 'bingads-ko-validation',
+    filename: 'knockout-validation.js',
+    library: 'knockout-validation',
     libraryTarget: 'umd',
     umdNamedDefine: false,
     devtoolModuleFilenameTemplate: function (info) {
@@ -36,7 +36,7 @@ module.exports = {
         return info.absoluteResourcePath;
       }
 
-      return 'webpack-src:///bingads-ko-validation-example/' + path.relative('.', info.absoluteResourcePath);
+      return 'webpack-src:///knockout-validation-example/' + path.relative('.', info.absoluteResourcePath);
     },
   },
   externals: [getExternals()],

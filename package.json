@@ -1,7 +1,7 @@
 {
-  "name": "bingads-ko-validation",
+  "name": "knockout-validation",
   "description": "Knockout validation and error handling module",
-  "main": "dist/bingads-ko-validation.js",
+  "main": "dist/knockout-validation.js",
   "keywords": [],
   "author": {
     "name": "a7medkamel"

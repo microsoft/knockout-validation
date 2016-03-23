@@ -1,1 +1,1 @@
-window.example(require('../../dist/bingads-ko-validation'));
+window.example(require('../../dist/knockout-validation'));
