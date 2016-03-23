@@ -1,11 +1,26 @@
+var _ = require('lodash');
 var path = require('path');
 var gulp = require('gulp');
+var gutil = require('gulp-util');
 var eslint = require('gulp-eslint');
 var excludeGitignore = require('gulp-exclude-gitignore');
-var webpack = require('webpack-stream');
+var file = require('gulp-file');
+var webpack = require('webpack');
+var esprima = require('esprima');
+var escodegen = require('escodegen');
+
 var pkg = require('./package');
 
 var spawn = require('child_process').spawn;
+
+function webpackBuild(configFilePath) {
+  return function (cb) {
+    webpack(require(configFilePath), function (err, stats) {
+      gutil.log(stats.toString({ colors: true }));
+      cb(err || stats.hasErrors() && new Error('webpack compile error'));
+    });
+  };
+}
 
 //
 // Don't use Karma API for now
@@ -15,6 +30,7 @@ var spawn = require('child_process').spawn;
 // We should switch back to Karma API when the issue is fixed
 //
 // var Server = require('karma').Server;
+//
 
 gulp.task('test', function (cb) {
   var handler = function (code) {
@@ -25,6 +41,7 @@ gulp.task('test', function (cb) {
     }
   };
 
+  //
   // Don't use Karma API for now
   //
   // new Server({
@@ -53,12 +70,28 @@ gulp.task('static', function () {
     .pipe(eslint.failAfterError());
 });
 
-gulp.task('webpack', function () {
-  return gulp.src(path.resolve(pkg.main))
-    .pipe(webpack(require('./webpack.config')))
-    .pipe(gulp.dest('dist/'));
+gulp.task('webpack', webpackBuild('./webpack.config'));
+
+gulp.task('example-webpack', webpackBuild('./example/webpack/webpack.config'));
+
+gulp.task('example-requirejs', function () {
+  return file(
+    'require.config.js',
+    escodegen.generate(
+      esprima.parse(
+        'window.requirejs.config(' + JSON.stringify({
+          paths: _.mapValues(pkg.peerDependencies, function (value, key) {
+            return path.relative('./example/requirejs', require.resolve(key)).replace(/\.js$/, '');
+          }),
+        }) + ');'
+      ),
+      _.set({}, 'format.indent.style', '  ')
+    )
+  ).pipe(gulp.dest('./example/requirejs/'));
 });
+
+gulp.task('examples', ['example-webpack', 'example-requirejs']);
 
 gulp.task('prepublish', ['webpack']);
 
-gulp.task('default', ['static', 'webpack']);
+gulp.task('default', ['static', 'webpack', 'examples']);
