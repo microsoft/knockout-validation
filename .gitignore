@@ -8,6 +8,7 @@ coverage
 dist
 
 # npm logs
+npm-debug.log
 node-debug.log
 
 # generated code for example pages
