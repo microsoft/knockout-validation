@@ -58,7 +58,7 @@
     "underscore": "^1.8.3"
   },
   "scripts": {
-    "test": "gulp test",
+    "test": "gulp test coveralls",
     "prepublish": "gulp prepublish"
   }
 }
