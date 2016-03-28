@@ -1,4 +1,7 @@
-define(['component/ko-validation/config'], function (config) {
+define([
+  'lib/underscore',
+  'component/ko-validation/config',
+], function (_, config) {
   'use strict';
 
   function Base() {
@@ -8,11 +11,11 @@ define(['component/ko-validation/config'], function (config) {
 
   Base.prototype.set = function (options) {
     options = options || {};
-    if (options.blockInput) {
+    if (_.has(options, 'blockInput')) {
       this.blockInput = options.blockInput;
     }
 
-    if (options.message) {
+    if (_.has(options, 'message')) {
       this.message = options.message;
     }
 

@@ -14,6 +14,7 @@ define([
   }
 
   Type.prototype.isValid = function (value) {
+    // TODO [lyweiwei] this is not general
     return value === '-' || value === decimalPoint || _.isFinite(value);
   };
 

@@ -12,6 +12,6 @@ define(['lib/underscore'], function (_) {
   // ];
   return {
     defaultMessage: _.identity,
-    decimalPoint: 2,
+    decimalPoint: '.',
   };
 });

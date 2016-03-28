@@ -11,7 +11,17 @@ function getWebpackConfig() {
       include: path.resolve('./js/'),
       loader: 'istanbul-instrumenter',
     },
+    {
+      test: /sinon\.js$/,
+      loader: 'imports?define=>false,require=>false',
+    },
   ].concat(webpackConfig.module.preLoaders || []);
+
+  _.defaults(webpackConfig, { resolve: {} });
+
+  webpackConfig.resolve.alias = _.defaults({
+    sinon: 'sinon/pkg/sinon',
+  }, webpackConfig.resolve.alias);
 
   return webpackConfig;
 }

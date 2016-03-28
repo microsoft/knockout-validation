@@ -5,9 +5,9 @@ define([
   'use strict';
 
   var Custom = function (method, message, blockInput) {
-    _.extend(this, new Base());
+    Base.apply(this);
 
-    if (blockInput) {
+    if (!_.isUndefined(blockInput)) {
       this.blockInput = blockInput;
     }
 
@@ -17,6 +17,8 @@ define([
 
     this.isValid = method;
   };
+
+  Custom.prototype = Object.create(Base.prototype);
 
   return Custom;
 });
