@@ -1,3 +1,4 @@
+# knockout-validation [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
 # knockout-validation
 Knockout validation and error handling module.
 
@@ -89,3 +90,12 @@ the observable
 ### Validator.prototype.validate(value)
 Validate a given value directly. Returns the error message if failed, otherwise
 returns `undefined`.
+
+[npm-image]: https://badge.fury.io/js/knockout-validation.svg
+[npm-url]: https://npmjs.org/package/knockout-validation
+[travis-image]: https://travis-ci.org/Microsoft/knockout-validation.svg?branch=master
+[travis-url]: https://travis-ci.org/Microsoft/knockout-validation
+[daviddm-image]: https://david-dm.org/Microsoft/knockout-validation.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/Microsoft/knockout-validation
+[coveralls-image]: https://coveralls.io/repos/Microsoft/knockout-validation/badge.svg
+[coveralls-url]: https://coveralls.io/r/Microsoft/knockout-validation
