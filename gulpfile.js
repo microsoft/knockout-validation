@@ -9,7 +9,7 @@ var webpack = require('webpack');
 var esprima = require('esprima');
 var escodegen = require('escodegen');
 var del = require('del');
-var coveralls = require('coveralls');
+var coveralls = require('gulp-coveralls');
 
 var pkg = require('./package');
 
