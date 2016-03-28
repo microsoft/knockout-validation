@@ -5,7 +5,7 @@ define([
   'component/ko-validation/validators/number',
   'component/ko-validation/validators/enum',
   'component/ko-validation/validators/custom',
-  'component/ko-validation/koExtension',
+  'component/ko-validation/ko-extension',
   'component/ko-validation/config',
 ], function (_, Required, String, Number, Enum, Custom, config) {
   'use strict';

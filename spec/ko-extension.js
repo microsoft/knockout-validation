@@ -2,7 +2,7 @@ var ko = require('knockout');
 var chai = require('chai');
 var sinon = require('sinon');
 var Custom = require('../js/validators/custom');
-require('../js/koExtension');
+require('../js/ko-extension');
 
 chai.use(require('sinon-chai'));
 var expect = chai.expect;
