@@ -6,6 +6,12 @@
   "author": {
     "name": "a7medkamel"
   },
+  "contributors": [
+    {
+      "name": "Wei Wei",
+      "email": "lyweiwei@outlook.com"
+    }
+  ],
   "version": "0.1.0",
   "files": [
     "dist"
