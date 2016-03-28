@@ -8,5 +8,5 @@ coverage
 dist
 
 # generated code for example pages
-example/requirejs/require.config.js
-example/webpack/dist
+examples/requirejs/require.config.js
+examples/webpack/dist

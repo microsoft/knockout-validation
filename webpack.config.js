@@ -39,6 +39,13 @@ module.exports = {
       return 'webpack-src:///knockout-validation-example/' + path.relative('.', info.absoluteResourcePath);
     },
   },
+  module: {
+    loaders: [
+      // jade
+      // es2015
+      // react
+    ],
+  },
   externals: [getExternals()],
   resolve: { alias: webpackAlias },
   devtool: 'source-map',
