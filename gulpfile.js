@@ -9,6 +9,7 @@ var webpack = require('webpack');
 var esprima = require('esprima');
 var escodegen = require('escodegen');
 var del = require('del');
+var coveralls = require('coveralls');
 
 var pkg = require('./package');
 
@@ -63,6 +64,15 @@ gulp.task('test', function (cb) {
   ], { stdio: 'inherit' }).on('close', handler);
 });
 
+gulp.task('coveralls', ['test'], function () {
+  if (!process.env.CI) {
+    return;
+  }
+
+  return gulp.src(path.join(__dirname, 'coverage/report-lcov/lcov.info'))
+    .pipe(coveralls());
+});
+
 gulp.task('static', function () {
   return gulp.src('**/*.js')
     .pipe(excludeGitignore())
@@ -113,4 +123,4 @@ gulp.task('clean:build', function () {
 
 gulp.task('clean', ['clean:build', 'clean:test', 'clean:examples']);
 
-gulp.task('default', ['static', 'webpack', 'examples']);
+gulp.task('default', ['static', 'webpack', 'examples', 'coveralls']);
