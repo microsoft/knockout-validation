@@ -9,6 +9,10 @@ define(['lib/underscore'], function (_) {
   //   'Validation_Number_Range_Min',
   //   'Validation_Number_Range_Max',
   //   'Validation_Number_Range_Between',
+  //   'Validation_Array_Size_Max',
+  //   'Validation_Array_Size_Between',
+  //   'Validation_Array_Items_Invalid',
+  //   'Validation_Array_Items_Duplicate'
   // ];
   return {
     defaultMessage: _.identity,

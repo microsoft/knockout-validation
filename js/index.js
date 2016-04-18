@@ -4,11 +4,12 @@ define([
   'component/ko-validation/validators/string',
   'component/ko-validation/validators/number',
   'component/ko-validation/validators/enum',
+  'component/ko-validation/validators/array',
   'component/ko-validation/validators/passive',
   'component/ko-validation/validators/custom',
   'component/ko-validation/ko-extension',
   'component/ko-validation/config',
-], function (_, Required, String, Number, Enum, Passive, Custom, config) {
+], function (_, Required, String, Number, Enum, Array, Passive, Custom, config) {
   'use strict';
 
   function run(value, validators) {
@@ -50,6 +51,26 @@ define([
     return new Enum(enumerators, nullable);
   }
 
+  function array() {
+    return new Array.Type();
+  }
+
+  array.size = function(min, max) {
+    return new Array.Size(min, max);
+  };
+
+  array.item = function(validators) {
+    return new Array.Item(validators);
+  };
+
+  array.items = function(validators, additionalValidators) {
+    return new Array.Items(validators, additionalValidators);
+  };
+
+  array.unique = function() {
+    return new Array.Unique();
+  };
+
   function passive() {
     return new Passive();
   }
@@ -64,6 +85,7 @@ define([
     string: string,
     number: number,
     enum: enumeration,
+    array: array,
     passive: passive,
     custom: custom,
     // end of validators
