@@ -25,8 +25,8 @@ define([
     return new String.Type();
   }
 
-  string.size = function (length) {
-    return new String.Size(length);
+  string.size = function (length, blockInput) {
+    return new String.Size(length, blockInput);
   };
 
   string.xss = function () {
