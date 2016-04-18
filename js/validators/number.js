@@ -16,7 +16,7 @@ define([
 
   Type.prototype.isValid = function (value) {
     // TODO [lyweiwei] this is not general
-    return value === '-' || value === decimalPoint || _.isFinite(value);
+    return (_.isString(value) && _.isEmpty(value)) || decimal.isValid(value, true);
   };
 
   function Size(integerLength, decimalLength) {
@@ -28,7 +28,11 @@ define([
   }
 
   Size.prototype.isValid = function (value) {
-    if ((_.isString(value) && _.isEmpty(value)) || !decimal.isValid(value, true)) {
+    if (_.isString(value) && _.isEmpty(value)) {
+      return true;
+    }
+
+    if (!decimal.isValid(value, true)) {
       return false;
     }
 
@@ -74,7 +78,11 @@ define([
   }
 
   Range.prototype.isValid = function (value) {
-    if ((_.isString(value) && _.isEmpty(value)) || !decimal.isValid(value, true)) {
+    if (_.isString(value) && _.isEmpty(value)) {
+      return true;
+    }
+
+    if (!decimal.isValid(value, true)) {
       return false;
     }
 
