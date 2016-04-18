@@ -4,10 +4,11 @@ define([
   'component/ko-validation/validators/string',
   'component/ko-validation/validators/number',
   'component/ko-validation/validators/enum',
+  'component/ko-validation/validators/passive',
   'component/ko-validation/validators/custom',
   'component/ko-validation/ko-extension',
   'component/ko-validation/config',
-], function (_, Required, String, Number, Enum, Custom, config) {
+], function (_, Required, String, Number, Enum, Passive, Custom, config) {
   'use strict';
 
   function run(value, validators) {
@@ -49,6 +50,10 @@ define([
     return new Enum(enumerators, nullable);
   }
 
+  function passive() {
+    return new Passive();
+  }
+
   function custom(method, message, blockInput) {
     return new Custom(method, message, blockInput);
   }
@@ -59,6 +64,7 @@ define([
     string: string,
     number: number,
     enum: enumeration,
+    passive: passive,
     custom: custom,
     // end of validators
     run: run, // run validation manually, for using without knockout
