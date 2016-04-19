@@ -34,7 +34,7 @@ define(['component/ko-validation/config'], function (config) {
         // true/false if exactly formatted correct, no smoothing
         isValid: function isValid (localizedInput, allowNoIntegralPart) {
             var format = getFormat()
-              , minGroupSize = 0// allowNoIntegralPart ? 0 : 1
+              , minGroupSize = 0 // allowNoIntegralPart ? 0 : 1
               , re = new RegExp('^[+-]?[0-9]{' + minGroupSize + ',' + format.groupSize + '}(?:\\' + format.groupChar + '?[0-9]{' + format.groupSize + '})*(?:\\' + format.decimalChar + '[[0-9]*)?$')
               , isValid = re.test(localizedInput);
 
