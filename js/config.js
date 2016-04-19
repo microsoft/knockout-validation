@@ -17,5 +17,14 @@ define(['lib/underscore'], function (_) {
   return {
     defaultMessage: _.identity,
     decimalPoint: '.',
+    groupPoint: ',',
+    groupSize: 3,
+    numberOfDigits: 2,
+    percentDecimalDigits: 2,
+    percentDecimalSeparator: '.',
+    percentGroupSeparator: '.',
+    percentGroupSize: 3,
+    percentPositivePattern: '0',
+    percentSymbol: '%'
   };
 });
