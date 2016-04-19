@@ -34,7 +34,7 @@ define(['component/ko-validation/config'], function (config) {
         // true/false if exactly formatted correct, no smoothing
         isValid: function isValid (localizedInput, allowNoIntegralPart) {
             var format = getFormat()
-              , minGroupSize = allowNoIntegralPart ? 0 : 1
+              , minGroupSize = 0// allowNoIntegralPart ? 0 : 1
               , re = new RegExp('^[+-]?[0-9]{' + minGroupSize + ',' + format.groupSize + '}(?:\\' + format.groupChar + '?[0-9]{' + format.groupSize + '})*(?:\\' + format.decimalChar + '[[0-9]*)?$')
               , isValid = re.test(localizedInput);
 
@@ -43,17 +43,17 @@ define(['component/ko-validation/config'], function (config) {
 
         // returns null if invalid
         // rounds if number of digits is passed, otherwise no rounding
-        fromLocalToFloat: function fromLocalToFloat(localizedInput, numberOfDigits) {
+        fromLocalToFloat: function fromLocalToFloat(localizedInput /*, numberOfDigits */) {
             var format = getFormat(),
                 parts = getParts(localizedInput, format.decimalChar);
-            if (parts.fractional || parts.integral) {
+            // if (parts.fractional || parts.integral) {
                 var floatValue = parts.toFloat();
-                if (numberOfDigits) {
-                    floatValue = parseFloat(floatValue.toFixed(numberOfDigits));
-                }
+                // if (numberOfDigits) {
+                //     floatValue = parseFloat(floatValue.toFixed(numberOfDigits));
+                // }
                 return floatValue;
-            }
-            return null;
+            // }
+            // return null;
         },
 
         // // returns null if isValid == false

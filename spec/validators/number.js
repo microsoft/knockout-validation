@@ -38,6 +38,11 @@ describe('number validators', function () {
       expect(num.Size).to.be.a('function');
     });
 
+    it('should leave empty string validation to required validator', function () {
+      var validator = new num.Size(3, 2);
+      expect(validator.isValid('')).to.be.true;
+    });
+
     it('should validate if a number has limited integer and decimal length', function () {
       var validator = new num.Size(3, 2);
 
@@ -66,6 +71,11 @@ describe('number validators', function () {
   describe('num.Range', function () {
     it('should be a class', function () {
       expect(num.Range).to.be.a('function');
+    });
+
+    it('should leave empty string validation to required validator', function () {
+      var validator = new num.Range(1);
+      expect(validator.isValid('')).to.be.true;
     });
 
     it('should validate if a number is no smaller than min', function () {

@@ -66,6 +66,9 @@ describe('array validators', function () {
       expect(validator.isValid(['foo', 'foo'])).to.be.true;
       expect(validator.isValid(['oof', 'bar'])).to.be.false;
       expect(validator.isValid(['oof', 'rab'])).to.be.false;
+
+      expect(validator.message({})).to.be.equal('Validation_Base_Field_Not_Valid');
+      expect(validator.message(['oof', 'bar'])).to.be.equal('Validation_Array_Items_Invalid');
     });
   });
 
@@ -83,8 +86,11 @@ describe('array validators', function () {
       expect(validator.isValid([])).to.be.true;
       expect(validator.isValid(['foo1'])).to.be.true;
       expect(validator.isValid(['foo1', 'bar2'])).to.be.true;
-      // expect(validator.isValid(['foo1', 'bar2', 'no validation'])).to.be.true;
+      expect(validator.isValid(['foo1', 'bar2', 'no validation'])).to.be.true;
       expect(validator.isValid(['foo2', 'bar1'])).to.be.false;
+
+      expect(validator.message({})).to.be.equal('Validation_Base_Field_Not_Valid');
+      expect(validator.message(['foo2', 'bar1'])).to.be.equal('Validation_Array_Items_Invalid');
     });
 
     it('should validate if additional items pass validation of additional validator', function () {
@@ -107,6 +113,8 @@ describe('array validators', function () {
 
       expect(validator.isValid(['foo1', 'bar2'])).to.be.true;
       expect(validator.isValid(['foo1', 'bar2', 'no validation'])).to.be.false;
+
+      expect(validator.message(['foo1', 'bar2', 'no validation'])).to.be.equal('Validation_Array_Size_Max');
     });
   });
 

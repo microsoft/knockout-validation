@@ -15,7 +15,7 @@ define([
   function Size(length, blockInput) {
     _.extend(this, new Base());
     this.blockInput = _.isUndefined(blockInput) ? true : blockInput;
-    this.length = length || 0;
+    this.length = length;
     this.message = config.defaultMessage('Validation_NotEmpty_Required_Field', { maxlength: this.length });
   }
 

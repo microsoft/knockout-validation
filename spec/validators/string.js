@@ -41,6 +41,20 @@ describe('str validators', function () {
       expect(validator.isValid('abcd')).to.be.false;
       expect(validator.isValid(123)).to.be.false;
     });
+
+    it('should provide second argument for block input or not', function () {
+      var validator = new str.Size(3, false);
+
+      expect(validator.blockInput).to.be.false;
+    });
+
+    it('should provide a process function to cut the string', function () {
+      var validator = new str.Size(3);
+
+      expect(validator.process).to.be.a('function');
+      expect(validator.process('abcdefg')).to.be.equal('abc');
+      expect(validator.process('ef')).to.be.equal('ef');
+    });
   });
 
   describe('str.XSS', function () {
