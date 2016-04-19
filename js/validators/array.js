@@ -1,8 +1,8 @@
 define([
   'lib/underscore',
   'component/ko-validation/validators/base',
-  '$/i18n!component/ko-validation'
-], function (_, Base, i18n) {
+  'component/ko-validation/config'
+], function (_, Base, config) {
   'use strict';
   function Type() {
     Base.call(this);
@@ -20,9 +20,9 @@ define([
     this.min = min || 0;
     this.max = max;
     if (this.min) {
-      this.message = i18n.get('Validation_Array_Size_Between', { min: this.min, max: max });
+      this.message = config.defaultMessage('Validation_Array_Size_Between', { min: this.min, max: max });
     } else {
-      this.message = i18n.get('Validation_Array_Size_Max', { max: max });
+      this.message = config.defaultMessage('Validation_Array_Size_Max', { max: max });
     }
   }
 
@@ -50,10 +50,10 @@ define([
     this.validators = validators;
     this.message = function (value) {
       if (!_.isArray(value)) {
-        return i18n.get('Validation_Base_Field_Not_Valid');
+        return config.defaultMessage('Validation_Base_Field_Not_Valid');
       }
 
-      return i18n.get('Validation_Array_Items_Invalid');
+      return config.defaultMessage('Validation_Array_Items_Invalid');
     };
   }
 
@@ -83,14 +83,14 @@ define([
     this.validators = validators;
     this.message = function (value) {
       if (!_.isArray(value)) {
-        return i18n.get('Validation_Base_Field_Not_Valid');
+        return config.defaultMessage('Validation_Base_Field_Not_Valid');
       }
 
       if (sizeNotFits(value, validators, additionalValidators)) {
-        return i18n.get('Validation_Array_Size_Max', { max: _.size(validators) });
+        return config.defaultMessage('Validation_Array_Size_Max', { max: _.size(validators) });
       }
 
-      return i18n.get('Validation_Array_Items_Invalid');
+      return config.defaultMessage('Validation_Array_Items_Invalid');
     };
   }
 
@@ -135,7 +135,7 @@ define([
   function Unique() {
     Base.call(this);
 
-    this.message = i18n.get('Validation_Array_Items_Duplicate');
+    this.message = config.defaultMessage('Validation_Array_Items_Duplicate');
   }
 
   Unique.prototype = Object.create(Base.prototype, { constructor: { value: Unique } } );
