@@ -81,6 +81,8 @@ define([
     Base.call(this);
 
     this.validators = validators;
+    this.additionalValidators = additionalValidators;
+
     this.message = function (value) {
       if (!_.isArray(value)) {
         return config.defaultMessage('Validation_Base_Field_Not_Valid');
