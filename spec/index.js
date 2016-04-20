@@ -3,9 +3,11 @@ var chai = require('chai');
 var sinon = require('sinon');
 var koValidation = require('../js/index');
 var Required = require('../js/validators/required');
+var arr = require('../js/validators/array');
 var str = require('../js/validators/string');
 var num = require('../js/validators/number');
 var Enum = require('../js/validators/enum');
+var Passive = require('../js/validators/passive');
 var Custom = require('../js/validators/custom');
 
 chai.use(require('sinon-chai'));
@@ -27,6 +29,58 @@ describe('knockout-validation', function () {
 
       expect(validator).to.be.instanceof(Required);
       expect(validator.allowSpace).to.be.equal(allowSpace);
+    });
+  });
+
+  describe('array', function () {
+    it('should be defined as a function', function () {
+      expect(koValidation.array).to.be.a('function');
+    });
+
+    it('should return an instance of arr.Type', function () {
+      expect(koValidation.array()).to.be.instanceof(arr.Type);
+    });
+
+    describe('array.size', function () {
+      it('should be defined as a function', function () {
+        expect(koValidation.array.size).to.be.a('function');
+      });
+
+      it('should return an instance of arr.Size', function () {
+        expect(koValidation.array.size(3, 5)).to.be.instanceof(arr.Size);
+      });
+    });
+
+    describe('array.item', function () {
+      it('should be defined as a function', function () {
+        expect(koValidation.array.item).to.be.a('function');
+      });
+
+      it('should return an instance of arr.Item', function () {
+        expect(koValidation.array.item([new Enum(['foo', 'bar'])])).to.be.instanceof(arr.Item);
+      });
+    });
+
+    describe('array.items', function () {
+      it('should be defined as a function', function () {
+        expect(koValidation.array.items).to.be.a('function');
+      });
+
+      it('should return an instance of arr.Items', function () {
+        expect(koValidation.array.items([
+          [new Enum(['foo', 'bar'])]
+        ], false)).to.be.instanceof(arr.Items);
+      });
+    });
+
+    describe('array.unique', function () {
+      it('should be defined as a function', function () {
+        expect(koValidation.array.unique).to.be.a('function');
+      });
+
+      it('should return an instance of arr.Unique', function () {
+        expect(koValidation.array.unique()).to.be.instanceof(arr.Unique);
+      });
     });
   });
 
@@ -115,6 +169,18 @@ describe('knockout-validation', function () {
       expect(validator).to.be.instanceof(Enum);
       expect(validator.enumerators).to.deep.equal(enumerators);
       expect(validator.nullable).to.equal(nullable);
+    });
+  });
+
+  describe('passive', function () {
+    it('should be defined as a function', function () {
+      expect(koValidation.passive).to.be.a('function');
+    });
+
+    it('should return an instance of Passive', function () {
+      var validator = koValidation.passive();
+
+      expect(validator).to.be.instanceof(Passive);
     });
   });
 
