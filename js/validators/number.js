@@ -2,7 +2,8 @@ define([
   'lib/underscore',
   'component/ko-validation/validators/base',
   'component/ko-validation/config',
-], function (_, Base, config) {
+  'component/humanize/decimal'
+], function (_, Base, config, decimal) {
   'use strict';
 
   var decimalPoint = config.decimalPoint;
@@ -15,7 +16,7 @@ define([
 
   Type.prototype.isValid = function (value) {
     // TODO [lyweiwei] this is not general
-    return value === '-' || value === decimalPoint || _.isFinite(value);
+    return (_.isString(value) && _.isEmpty(value)) || decimal.isValid(value, true);
   };
 
   function Size(integerLength, decimalLength) {
@@ -27,12 +28,16 @@ define([
   }
 
   Size.prototype.isValid = function (value) {
-    if (!_.isFinite(value)) {
+    if (_.isString(value) && _.isEmpty(value)) {
+      return true;
+    }
+
+    if (!decimal.isValid(value, true)) {
       return false;
     }
 
-    var number = parseFloat(value);
-    var text = value.toString();
+    var number = decimal.fromLocalToFloat(value);
+    var text = number.toString();
 
     if (number < 0) {
       text = text.substr(1);
@@ -73,7 +78,11 @@ define([
   }
 
   Range.prototype.isValid = function (value) {
-    if (!_.isFinite(value)) {
+    if (_.isString(value) && _.isEmpty(value)) {
+      return true;
+    }
+
+    if (!decimal.isValid(value, true)) {
       return false;
     }
 
