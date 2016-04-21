@@ -74,7 +74,7 @@ describe('knockout extension', function () {
     validator.process = sinon.stub().returns('processed');
 
     var ob = ko.observable().extend({
-      validate: [validator]
+      validate: [validator],
     });
 
     ob('foo');
@@ -90,7 +90,7 @@ describe('knockout extension', function () {
     }, false);
 
     var ob = ko.observable().extend({
-      validate: [validator]
+      validate: [validator],
     });
 
     ob('foo');
