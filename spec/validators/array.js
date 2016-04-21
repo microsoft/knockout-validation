@@ -80,7 +80,7 @@ describe('array validators', function () {
     it('should validate if each item passes validation of corresponding validator when additional validator is true', function () {
       var validator = new arr.Items([
         [new Enum(['foo1', 'bar1'])],
-        [new Enum(['foo2', 'bar2'])]
+        [new Enum(['foo2', 'bar2'])],
       ], true);
 
       expect(validator.isValid([])).to.be.true;
@@ -96,9 +96,9 @@ describe('array validators', function () {
     it('should validate if additional items pass validation of additional validator', function () {
       var validator = new arr.Items([
         [new Enum(['foo1', 'bar1'])],
-        [new Enum(['foo2', 'bar2'])]
+        [new Enum(['foo2', 'bar2'])],
       ], [
-        new Enum(['foo-additional', 'bar-additional'])
+        new Enum(['foo-additional', 'bar-additional']),
       ]);
 
       expect(validator.isValid(['foo1', 'bar2', 'foo-additional'])).to.be.true;
@@ -108,7 +108,7 @@ describe('array validators', function () {
     it('should validate if array length not exceed length of validators when additional validator is false', function () {
       var validator = new arr.Items([
         [new Enum(['foo1', 'bar1'])],
-        [new Enum(['foo2', 'bar2'])]
+        [new Enum(['foo2', 'bar2'])],
       ], false);
 
       expect(validator.isValid(['foo1', 'bar2'])).to.be.true;

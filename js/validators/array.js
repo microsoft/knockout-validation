@@ -1,16 +1,16 @@
 define([
   'lib/underscore',
   'component/ko-validation/validators/base',
-  'component/ko-validation/config'
+  'component/ko-validation/config',
 ], function (_, Base, config) {
   'use strict';
   function Type() {
     Base.call(this);
   }
 
-  Type.prototype = Object.create(Base.prototype, { constructor: { value: Type } } );
+  Type.prototype = Object.create(Base.prototype, { constructor: { value: Type } });
 
-  Type.prototype.isValid = function(value) {
+  Type.prototype.isValid = function (value) {
     return _.isArray(value);
   };
 
@@ -26,16 +26,16 @@ define([
     }
   }
 
-  Size.prototype = Object.create(Base.prototype, { constructor: { value: Size } } );
+  Size.prototype = Object.create(Base.prototype, { constructor: { value: Size } });
 
-  Size.prototype.isValid = function(value) {
+  Size.prototype.isValid = function (value) {
     var size = _.size(value);
 
     return _.isArray(value) && size >= this.min && size <= this.max;
   };
 
   function passAll(validators, value) {
-    return _.every(validators, function(validator) {
+    return _.every(validators, function (validator) {
       return validator.isValid(value);
     });
   }
@@ -57,7 +57,7 @@ define([
     };
   }
 
-  Item.prototype = Object.create(Base.prototype, { constructor: { value: Item } } );
+  Item.prototype = Object.create(Base.prototype, { constructor: { value: Item } });
 
   Item.prototype.isValid = function (value) {
     return _.isArray(value) && _.isEmpty(this.invalidItems(value));
@@ -96,7 +96,7 @@ define([
     };
   }
 
-  Items.prototype = Object.create(Base.prototype, { constructor: { value: Items } } );
+  Items.prototype = Object.create(Base.prototype, { constructor: { value: Items } });
 
   Items.prototype.isValid = function (value) {
     return _.isArray(value) && _.isEmpty(this.invalidItems(value));
@@ -140,7 +140,7 @@ define([
     this.message = config.defaultMessage('Validation_Array_Items_Duplicate');
   }
 
-  Unique.prototype = Object.create(Base.prototype, { constructor: { value: Unique } } );
+  Unique.prototype = Object.create(Base.prototype, { constructor: { value: Unique } });
 
   Unique.prototype.isValid = function (value) {
     return _.isArray(value) && _.size(_.uniq(value)) === _.size(value);
@@ -151,6 +151,6 @@ define([
     Size: Size,
     Item: Item,
     Items: Items,
-    Unique: Unique
+    Unique: Unique,
   };
 });
