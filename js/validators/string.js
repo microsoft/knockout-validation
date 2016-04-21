@@ -23,7 +23,7 @@ define([
     return _.isString(value) && _.size(value) <= this.length;
   };
 
-  Size.prototype.process = function(value) {
+  Size.prototype.process = function (value) {
     if (_.isString(value) && _.size(value) > this.length) {
       return value.substring(0, this.length);
     }

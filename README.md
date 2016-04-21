@@ -62,9 +62,41 @@ Create a number validator with a range.
 Create an enum validator validates if the observable has a value in the given
 value set.
 
+### `koValidation.array()`
+Create an array validator validates if the observable has an array value.
+
+### `koValidation.array.size(min, max)`
+Create an array validator with size validation.
+
+### `koValidation.array.item(validators)`
+Create an array validator with validators for every item.
+* `validators`, array of validators, every validator should be passed by every item.
+
+### `koValidation.array.items(validators, additionalValidators)`
+Create an array validator with validators which should be all passed one by 
+one by every item.
+* `validators`, array of validators array, every validators array should be 
+passed by item with same index.
+* `additionalValidators`, boolean or array of validators. true means allow 
+additional items for which there're no validation; false means no additional items
+are allowed; array of validators means every additional items should pass all
+these validators.
+
+### `koValidation.array.unique()`
+Create an array validator with no duplicate item validation.
+
 ### `koValidation.required(allowSpace)`
 Create a validator verifies if the observable has a value. If `allowSpace` is
 false, space only strings are treated as invalid.
+
+### `koValidation.passive()`
+Create a validator which sets observable's errors passively.
+
+### PassiveValidator.prototype.setError(message, value)
+Set passive error to the observable. Error will be cleared when value changes.
+* `message`, the passive error message
+* `value`, associated value, if the observable is set to any other value, the error 
+will be cleared
 
 ### `koValidation.custom(isValid, message, blockInput)`
 Create a validator using customized validation method.

@@ -10,7 +10,7 @@ define(['lib/knockout', 'lib/underscore'], function (ko, _) {
       },
       write: function (value) {
         observableWrapper.errors.removeAll();
-        _.each(validators, function(validator) {
+        _.each(validators, function (validator) {
           if (_.isFunction(validator.process) && !validator.blockInput) {
             value = validator.process(value);
           }

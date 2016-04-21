@@ -2,7 +2,7 @@ define([
   'lib/underscore',
   'component/ko-validation/validators/base',
   'component/ko-validation/config',
-  'component/humanize/decimal'
+  'component/humanize/decimal',
 ], function (_, Base, config, decimal) {
   'use strict';
 
