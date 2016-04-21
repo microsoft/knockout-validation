@@ -55,19 +55,19 @@ define([
     return new Array.Type();
   }
 
-  array.size = function(min, max) {
+  array.size = function (min, max) {
     return new Array.Size(min, max);
   };
 
-  array.item = function(validators) {
+  array.item = function (validators) {
     return new Array.Item(validators);
   };
 
-  array.items = function(validators, additionalValidators) {
+  array.items = function (validators, additionalValidators) {
     return new Array.Items(validators, additionalValidators);
   };
 
-  array.unique = function() {
+  array.unique = function () {
     return new Array.Unique();
   };
 

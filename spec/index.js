@@ -68,7 +68,7 @@ describe('knockout-validation', function () {
 
       it('should return an instance of arr.Items', function () {
         expect(koValidation.array.items([
-          [new Enum(['foo', 'bar'])]
+          [new Enum(['foo', 'bar'])],
         ], false)).to.be.instanceof(arr.Items);
       });
     });
