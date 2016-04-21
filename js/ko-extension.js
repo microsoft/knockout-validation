@@ -10,6 +10,12 @@ define(['lib/knockout', 'lib/underscore'], function (ko, _) {
       },
       write: function (value) {
         observableWrapper.errors.removeAll();
+        _.each(validators, function(validator) {
+          if (_.isFunction(validator.process) && !validator.blockInput) {
+            value = validator.process(value);
+          }
+        });
+
         var failedValidations = _.filter(validators, function (v) {
           return !v.isValid(value);
         });
@@ -23,7 +29,11 @@ define(['lib/knockout', 'lib/underscore'], function (ko, _) {
             return _.isFunction(failed.message) ? failed.message(value) : failed.message;
           }));
 
-          observable(value);
+          if (_.isEqual(observable(), value)) {
+            observable.notifySubscribers();
+          } else {
+            observable(value);
+          }
         }
       },
     }).extend({ notify: 'always' });
