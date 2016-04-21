@@ -1,7 +1,7 @@
 define([
   'lib/underscore',
-  'component/ko-validation/validators/base'
-], function(_, Base) {
+  'component/ko-validation/validators/base',
+], function (_, Base) {
   'use strict';
 
   function Passive() {
@@ -21,8 +21,8 @@ define([
 
   Passive.prototype.setError = function (message, value) {
     this.error = {
-      message : message,
-      value   : value,
+      message: message,
+      value: value,
     };
     this.message = message;
   };

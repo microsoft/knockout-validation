@@ -25,6 +25,6 @@ define(['lib/underscore'], function (_) {
     percentGroupSeparator: '.',
     percentGroupSize: 3,
     percentPositivePattern: '0',
-    percentSymbol: '%'
+    percentSymbol: '%',
   };
 });
