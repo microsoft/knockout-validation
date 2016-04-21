@@ -25,8 +25,8 @@ describe('number validators', function () {
       expect(validator.isValid('1,234.456')).to.be.true;
       expect(validator.isValid('f1,234.456')).to.be.false;
       // TODO: [zhbliu] should we allow numbers shown with scientific notation by default (number with too many digits) ?
-      //expect(validator.isValid(Number.MAX_VALUE)).to.be.true;
-      //expect(validator.isValid(Number.MIN_VALUE)).to.be.true;
+      // expect(validator.isValid(Number.MAX_VALUE)).to.be.true;
+      // expect(validator.isValid(Number.MIN_VALUE)).to.be.true;
       expect(validator.isValid('foo')).to.be.false;
       expect(validator.isValid({ a: 1 })).to.be.false;
       expect(validator.isValid([1, 2, 3])).to.be.false;
