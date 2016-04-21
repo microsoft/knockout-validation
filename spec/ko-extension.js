@@ -63,6 +63,41 @@ describe('knockout extension', function () {
     expect(obNonblock.errors()).to.deep.equal([message]);
   });
 
+  it('should cause no error when no validator passed in', function () {
+    expect(function () {
+      ko.observable().extend({ validate: null });
+    }).to.not.throw();
+  });
+
+  it('should validate value after process when not block input', function () {
+    var validator = new Custom(isValid, message, false);
+    validator.process = sinon.stub().returns('processed');
+
+    var ob = ko.observable().extend({
+      validate: [validator]
+    });
+
+    ob('foo');
+
+    expect(isValid).to.be.calledOnce.and.calledWith('processed');
+    expect(ob()).be.equal('processed');
+    expect(ob.errors()[0]).to.be.equal(message);
+  });
+
+  it('should set error as return value of message function', function () {
+    var validator = new Custom(isValid, function (value) {
+      return value + ': ' + message;
+    }, false);
+
+    var ob = ko.observable().extend({
+      validate: [validator]
+    });
+
+    ob('foo');
+
+    expect(ob.errors()[0]).to.be.equal('foo: ' + message);
+  });
+
   describe('observable.validate', function () {
     it('should validate the value immediately', function () {
       var result = obNonblock.validate();

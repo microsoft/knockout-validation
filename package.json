@@ -12,6 +12,10 @@
       "email": "lyweiwei@outlook.com"
     }
   ],
+	"repository" : {
+		"type": "git",
+		"url": "https://github.com/Microsoft/knockout-validation.git"
+  },
   "version": "0.1.1",
   "files": [
     "dist"
